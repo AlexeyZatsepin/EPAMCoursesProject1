@@ -30,6 +30,9 @@ public class SizePackBuilder  extends PackageBuilder{
         pack.setLabel("New year "+shape.getClass().getSimpleName());
     }
 
+    /**
+     * build by size
+     */
     @Override
     public void buildSweets() {
         double sweetsVolume = 0.0;

@@ -26,6 +26,9 @@ public class ManufacturerPackBuilder extends PackageBuilder{
         pack.setLabel("New Year from " +manufacturer.toString());
     }
 
+    /**
+     * build by manufacturer
+     */
     @Override
     public void buildSweets() {
         double sweetsVolume = 0.0;

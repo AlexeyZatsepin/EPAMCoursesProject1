@@ -12,7 +12,7 @@ import java.util.Set;
  * @author Alex
  */
 
-public class Candy extends Sweetness implements Packable{
+public class Candy extends Sweetness implements Packable{ // candy , you can eat, you can pack
     private boolean canBeSingle = true;
 
     public Candy(Shape shape, int price, String label, Manufacturer manufacturer, Set<Ingridient> ingridients, boolean canBeSingle) {

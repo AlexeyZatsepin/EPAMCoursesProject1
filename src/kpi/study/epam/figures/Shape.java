@@ -13,10 +13,11 @@ public abstract class Shape {
     public double perimeter(){
         return 0.0;
     }
+
     public abstract double volume();
 
     @Override
     public String toString() {
-        return " volume = " + volume() + "Type =" + getClass().getSimpleName();
+        return " volume: " + volume() + " shape: " + getClass().getSimpleName();
     }
 }

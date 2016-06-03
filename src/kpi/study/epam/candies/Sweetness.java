@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Alex
  */
-public abstract class Sweetness {
+public abstract class Sweetness implements Eatable{
     private Shape shape;
     private int price;
     private String label;
@@ -66,10 +66,12 @@ public abstract class Sweetness {
         this.ingridients = ingridients;
     }
 
+    /**
+     * all manufacturers
+     */
     public enum Manufacturer {
         ROSHEN,AVK,LASUNKA,SVITOCH,KORONA,RUD
     }
-    public void eatIt(){}
 
     double getWeight(){
         double weight=0.0;
@@ -92,6 +94,8 @@ public abstract class Sweetness {
 
     @Override
     public String toString() {
-        return "glabel :"+label +" price :"+ price;
+        return "\nlabel :"+label+", "+manufacturer+";";
     }
+
+
 }

@@ -1,7 +1,10 @@
 package kpi.study.epam.packing;
 
+import kpi.study.epam.candies.NotPackableExeption;
+import kpi.study.epam.candies.Packable;
 import kpi.study.epam.candies.Sweetness;
 import kpi.study.epam.figures.Shape;
+import kpi.study.epam.ingredients.Ingridient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +15,15 @@ import java.util.List;
  *
  * @author Alex
  */
-public class Package { //Product
-    private Shape shape;
-    private String label;
-    private List<Sweetness> sweets = new ArrayList<>();
+public class Package { //Product analog, builder pattern
+    private Shape shape;//shape
+    private String label; // name of present
+    private List<Sweetness> sweets = new ArrayList<>(); // list of sweets
     private double totalPrice = 0.0;
 
-
+    /**
+     * setters and getters block
+     */
     public Shape getShape() {
         return shape;
     }
@@ -51,17 +56,65 @@ public class Package { //Product
         }
     }
 
+    /**
+     *
+     * @return total price
+     */
     public double getTotalPrice() {
         return totalPrice;
+    }
+    private double getProteinsLevel(){
+        double level = 0.0;
+        for(Sweetness sweet: sweets){
+            for (Ingridient ingridient:sweet.getIngridients()){
+                level+= ingridient.getProteinsCapacity();
+            }
+        }
+        return level;
+    }
+    private double getFatsLevel(){
+        double level = 0.0;
+        for(Sweetness sweet: sweets){
+            for (Ingridient ingridient:sweet.getIngridients()){
+                level+= ingridient.getFatsCapacity();
+            }
+        }
+        return level;
+    }
+    private double getCarbohydratesLevel(){
+        double level = 0.0;
+        for(Sweetness sweet: sweets){
+            for (Ingridient ingridient:sweet.getIngridients()){
+                level+= ingridient.getCarbohydratesCapacity();
+            }
+        }
+        return level;
+    }
+
+    public void addSweet(Sweetness sweet) throws NotPackableExeption, PackageOutOfBoundsExeption {
+        double sweetsVolume = 0.0;
+        for (Sweetness candy : sweets) {
+            sweetsVolume += candy.getShape().volume();
+        }
+        if (shape.volume()>sweetsVolume) {
+            if (sweet instanceof Packable) {
+                sweets.add(sweet);
+            } else {
+                throw new NotPackableExeption("can't pack"+sweet);
+            }
+        }else{
+            throw new PackageOutOfBoundsExeption("package is full");
+        }
     }
 
     @Override
     public String toString() {
-        return "Package{" +
-                "shape=" + shape.toString() +
-                ", label='" + label + '\'' +
-                ", sweets=" + sweets.toString() +
-                ", totalPrice=" + totalPrice +
-                '}';
+        return "Package:'" + label + '\'' + shape.toString() +
+                ", totalPrice: " + totalPrice +
+                ",\n" + "proteins:" + getProteinsLevel()
+                +" fats: "+getFatsLevel()
+                +" carbohydrates: "+ getCarbohydratesLevel()
+                +",\n sweets=" + sweets.toString();
+
     }
 }

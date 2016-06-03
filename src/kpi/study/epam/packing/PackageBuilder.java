@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Alex
  */
-public abstract class PackageBuilder {
+public abstract class PackageBuilder { //abstract bulder
     protected Package pack;
     protected Shape shape;
     protected List<Sweetness> sweets=new ArrayList<>();

@@ -6,5 +6,8 @@ package kpi.study.epam.packing;
  *
  * @author Alex
  */
-public class PackageOutOfBoundsExeption {
+public class PackageOutOfBoundsExeption extends Exception {
+    public PackageOutOfBoundsExeption(String message) {
+        super(message);
+    }
 }

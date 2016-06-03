@@ -13,7 +13,7 @@ import java.util.Set;
  */
 
 public class Cake extends Sweetness{
-    public boolean isSlised = false;
+    public boolean isSliced = false; //if not sliced have one piece
     public int pieceCount = 1;
 
     public Cake(Shape shape, int price, String label, Manufacturer manufacturer, Set<Ingridient> ingridients) {
@@ -25,12 +25,12 @@ public class Cake extends Sweetness{
         super.eatIt();
     }
 
-    public boolean isSlised() {
-        return isSlised;
+    public boolean isSliced() {
+        return isSliced;
     }
 
-    public void setSlised(boolean slised) {
-        isSlised = slised;
+    public void setSliced(boolean sliced) {
+        isSliced = sliced;
     }
 
     public int getPieceCount() {
@@ -42,7 +42,7 @@ public class Cake extends Sweetness{
     }
 
     public void sliseIt(int count){
-        setSlised(true);
+        setSliced(true);
         pieceCount *= count;
     }
 }

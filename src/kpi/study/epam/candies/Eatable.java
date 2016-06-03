@@ -6,5 +6,12 @@ package kpi.study.epam.candies;
  *
  * @author Alex
  */
-public class Eatable {
+
+/**
+ * something you can eat
+ */
+public interface Eatable {
+    default void eatIt(){
+        System.out.println("mmm "+ getClass().getSimpleName());
+    }
 }

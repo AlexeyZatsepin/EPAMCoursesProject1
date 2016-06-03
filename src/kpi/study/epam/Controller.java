@@ -27,6 +27,9 @@ public class Controller {
         this.view = view;
     }
 
+    /**
+     * main process
+     */
     public void processUser(){
         Scanner sc = new Scanner(System.in);
         view.printMessage(View.MENU);
@@ -37,12 +40,15 @@ public class Controller {
         List<Sweetness> products = createSweetnesses();
         Package pack = createPachage(products,i);
         view.printMessage(pack.toString());
-
     }
 
+    /**
+     *
+     * @return list of existing sweets
+     */
     public List<Sweetness> createSweetnesses(){
         Creator[] creators = {new CheeseCakeCreator(), new ChocolateGlobeCandyCreator(),
-                new ChocolatePyramidCandyCreator(),new HariboCreator(),new RafaelloCreator()};
+                new ChocolatePyramidCandyCreator(),new HariboCreator(),new RafaelloCreator(),new MarshmellowCreator()};
         List<Sweetness> products = new ArrayList<>();
         for (Creator creator: creators) {
             products.add(creator.create());
@@ -50,6 +56,12 @@ public class Controller {
         return products;
     }
 
+    /**
+     * create pack with build pattern
+     * @param products list of sweets
+     * @param menu_id pack builder id
+     * @return ready package
+     */
     public Package createPachage(List<Sweetness> products , int menu_id){
         Director director = new Director();
         PackageBuilder pb;
@@ -61,7 +73,7 @@ public class Controller {
                 pb = new ManufacturerPackBuilder(new Parallelepiped(12,5,4),products, Sweetness.Manufacturer.ROSHEN);
                 break;
             case 3:
-                pb = new CostPackBuilder(new Cylinder(4,5),products,400);
+                pb = new CostPackBuilder(new Cylinder(5,5),products,200);
                 break;
             default:
                 pb = new SizePackBuilder(new Globe(5),products);

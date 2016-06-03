@@ -9,6 +9,10 @@ import kpi.study.epam.candies.Sweetness;
  * @author Alex
  */
 public abstract class Creator {
+    /**
+     * abstract creator, pattern factory
+     * @return sweet
+     */
     public abstract Sweetness create();
 }
 

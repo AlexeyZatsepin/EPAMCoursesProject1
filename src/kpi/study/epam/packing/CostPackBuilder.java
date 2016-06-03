@@ -14,6 +14,7 @@ import java.util.List;
  * @author Alex
  */
 public class CostPackBuilder extends PackageBuilder{
+    // max cost of pack
     private int maxCost;
 
     public CostPackBuilder(Shape shape, List<Sweetness> sweets,int maxCost) {
@@ -40,18 +41,23 @@ public class CostPackBuilder extends PackageBuilder{
         this.maxCost = maxCost;
     }
 
+    /**
+     * build by size and cost
+     */
     @Override
     public void buildSweets() {
         double sweetsVolume = 0.0;
+        double totalPrice = 0.0;
         List<Sweetness> result = new ArrayList<>();
-        while ((shape.volume()>sweetsVolume)&(maxCost>pack.getTotalPrice())) {
+        while ((shape.volume()>sweetsVolume)&(maxCost>totalPrice)) {
             for (Sweetness candy : sweets) {
-                if ((candy instanceof Packable)&(shape.volume() > sweetsVolume)) {
+                if ((candy instanceof Packable)&(shape.volume() > sweetsVolume)&(maxCost>totalPrice)) {
                     sweetsVolume += candy.getShape().volume();
+                    totalPrice += candy.getPrice();
                     result.add(candy);
                 }
             }
-            pack.setSweets(result);
         }
+        pack.setSweets(result);
     }
 }
