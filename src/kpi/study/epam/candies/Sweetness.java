@@ -73,7 +73,7 @@ public abstract class Sweetness implements Eatable{
         ROSHEN,AVK,LASUNKA,SVITOCH,KORONA,RUD
     }
 
-    double getWeight(){
+    public double getWeight(){
         double weight=0.0;
         for (Ingridient item:ingridients) {
             weight += item.getWeight();

@@ -3,7 +3,6 @@ package kpi.study.epam;
 import kpi.study.epam.candies.Sweetness;
 import kpi.study.epam.candies.creator.*;
 import kpi.study.epam.figures.Cylinder;
-import kpi.study.epam.figures.Globe;
 import kpi.study.epam.figures.Parallelepiped;
 import kpi.study.epam.figures.Pyramid;
 import kpi.study.epam.packing.*;
@@ -31,15 +30,15 @@ public class Controller {
      * main process
      */
     public void processUser(){
-        Scanner sc = new Scanner(System.in);
-        view.printMessage(View.MENU);
-        int i = inputIntValueWithScanner(sc);
-        while (i>3){
-            i = inputIntValueWithScanner(sc);
+        int i =0;
+        while (i!=4){
+            view.printMessage(View.MENU);
+            i = inputIntValueWithScanner(view.getScanner());
+            List<Sweetness> products = createSweetnesses();
+            Package pack = createPachage(products,i);
+            view.printMessage(pack.toString());
+            view.printMessage(View.SUCCESS);
         }
-        List<Sweetness> products = createSweetnesses();
-        Package pack = createPachage(products,i);
-        view.printMessage(pack.toString());
     }
 
     /**
@@ -66,9 +65,6 @@ public class Controller {
         Director director = new Director();
         PackageBuilder pb;
         switch (menu_id){
-            case 1:
-                pb = new SizePackBuilder(new Pyramid(30,10,8,6),products);
-                break;
             case 2:
                 pb = new ManufacturerPackBuilder(new Parallelepiped(12,5,4),products, Sweetness.Manufacturer.ROSHEN);
                 break;
@@ -76,13 +72,12 @@ public class Controller {
                 pb = new CostPackBuilder(new Cylinder(5,5),products,200);
                 break;
             default:
-                pb = new SizePackBuilder(new Globe(5),products);
+                pb = new SizePackBuilder(new Pyramid(30,10,8,6),products);
         }
         director.setBuilder(pb);
         director.constructPackage();
         return director.getPackage();
     }
-
 
     public int inputIntValueWithScanner(Scanner sc) {
         while(! sc.hasNextInt()) {

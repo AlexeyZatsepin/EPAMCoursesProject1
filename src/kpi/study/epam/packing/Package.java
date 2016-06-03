@@ -70,6 +70,17 @@ public class Package { //Product analog, builder pattern
 
     /**
      *
+     * @return total weight
+     */
+    public double getTotalWeight(){
+        double totalWeight=0.0;
+        for (Sweetness candy:sweets) {
+            totalWeight+=candy.getWeight();
+        }
+        return totalWeight;
+    }
+    /**
+     *
      * @return proteins sum capacity(level) in package
      */
     private double getProteinsLevel(){
@@ -136,7 +147,7 @@ public class Package { //Product analog, builder pattern
     @Override
     public String toString() {
         return "Package:'" + label + '\'' + shape.toString() +
-                ", totalPrice: " + totalPrice +
+                ", total price: " + totalPrice + ", total weight: "+ getTotalWeight()+
                 ",\n" + "proteins:" + getProteinsLevel()
                 +" fats: "+getFatsLevel()
                 +" carbohydrates: "+ getCarbohydratesLevel()

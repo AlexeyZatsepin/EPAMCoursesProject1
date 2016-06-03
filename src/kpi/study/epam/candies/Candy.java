@@ -13,19 +13,25 @@ import java.util.Set;
  */
 
 public class Candy extends Sweetness implements Packable{ // candy , you can eat, you can pack
-    private boolean canBeSingle = true;
+    private boolean isSingle = true;
 
     public Candy(Shape shape, int price, String label, Manufacturer manufacturer, Set<Ingridient> ingridients, boolean canBeSingle) {
         super(shape, price, label, manufacturer, ingridients);
-        this.canBeSingle = canBeSingle;
+        this.isSingle = canBeSingle;
     }
 
-    public boolean isCanBeSingle() {
-        return canBeSingle;
+    public boolean isSingle() {
+        return isSingle;
     }
 
-    public void setCanBeSingle(boolean canBeSingle) {
-        this.canBeSingle = canBeSingle;
+    public void setIsSingle(boolean canBeSingle) {
+        this.isSingle = canBeSingle;
     }
 
+    @Override
+    public void eatIt() {
+        if(isSingle()){
+            super.eatIt();
+        }
+    }
 }
