@@ -28,5 +28,4 @@ public class Candy extends Sweetness implements Packable{ // candy , you can eat
         this.canBeSingle = canBeSingle;
     }
 
-
 }

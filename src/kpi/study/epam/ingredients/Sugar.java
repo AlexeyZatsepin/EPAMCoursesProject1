@@ -14,7 +14,7 @@ public class Sugar extends Ingridient{
         this.kind = kind;
     }
 
-    enum Kind{
+    public enum Kind{
         White,Brown
     }
 }

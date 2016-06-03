@@ -44,6 +44,10 @@ public class Package { //Product analog, builder pattern
         return sweets;
     }
 
+    /**
+     * complex setter for
+     * @param sweets list of existing sweets
+     */
     public void setSweets(List<Sweetness> sweets) {
         if (this.sweets.isEmpty()) {
             this.sweets = sweets;
@@ -63,6 +67,11 @@ public class Package { //Product analog, builder pattern
     public double getTotalPrice() {
         return totalPrice;
     }
+
+    /**
+     *
+     * @return proteins sum capacity(level) in package
+     */
     private double getProteinsLevel(){
         double level = 0.0;
         for(Sweetness sweet: sweets){
@@ -72,6 +81,11 @@ public class Package { //Product analog, builder pattern
         }
         return level;
     }
+
+    /**
+     *
+     * @return fats sum capacity(level) in package
+     */
     private double getFatsLevel(){
         double level = 0.0;
         for(Sweetness sweet: sweets){
@@ -81,6 +95,11 @@ public class Package { //Product analog, builder pattern
         }
         return level;
     }
+
+    /**
+     *
+     * @return carbohydrates sum capacity(level) in package
+     */
     private double getCarbohydratesLevel(){
         double level = 0.0;
         for(Sweetness sweet: sweets){
@@ -91,11 +110,18 @@ public class Package { //Product analog, builder pattern
         return level;
     }
 
+    /**
+     * add one sweetness in package
+     * @param sweet some sweet, that we want to add to our pack
+     * @throws NotPackableExeption if we want pack some unpackeble item, like cheese cake
+     * @throws PackageOutOfBoundsExeption if package is full
+     */
     public void addSweet(Sweetness sweet) throws NotPackableExeption, PackageOutOfBoundsExeption {
         double sweetsVolume = 0.0;
         for (Sweetness candy : sweets) {
             sweetsVolume += candy.getShape().volume();
         }
+        sweetsVolume += sweet.getShape().volume();
         if (shape.volume()>sweetsVolume) {
             if (sweet instanceof Packable) {
                 sweets.add(sweet);
