@@ -63,6 +63,11 @@ public abstract class Sweetness implements Eatable{
     }
 
     public void setIngridients(Set<Ingridient> ingridients) {
+        for (Ingridient item: ingridients) {
+            if(item.getType() != Ingridient.Type.sweet){
+                ingridients.remove(item);
+            }
+        }
         this.ingridients = ingridients;
     }
 
@@ -80,17 +85,6 @@ public abstract class Sweetness implements Eatable{
         }
         return weight;
     }
-
-//    @Override
-//    public String toString() {
-//        return "Sweetness{" +
-//                "shape=" + shape.toString() +
-//                ", price=" + price +
-//                ", label='" + label + '\'' +
-//                ", manufacturer=" + manufacturer +
-//                ", ingridients=" + ingridients.toString() +
-//                '}';
-//    }
 
     @Override
     public String toString() {

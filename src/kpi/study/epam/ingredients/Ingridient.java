@@ -57,7 +57,7 @@ public abstract class Ingridient {
     }
 
 
-    enum Type{
+    public enum Type{
         sweet,
         salty,
         sour,

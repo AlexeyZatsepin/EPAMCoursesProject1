@@ -29,4 +29,11 @@ public class ShapeTest {
         Shape shape = new Globe(6);
         assert expectedResult==shape.volume();
     }
+
+    @Test
+    public void testVolumeParallelepiped(){
+        double expectedResult = 1000;
+        Shape shape = new Parallelepiped(10,10,10);
+        assert expectedResult == shape.volume();
+    }
 }

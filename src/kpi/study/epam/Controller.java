@@ -20,6 +20,9 @@ import java.util.Scanner;
  */
 public class Controller {
 
+    private static final int MANUFACTURER_MENU_ID = 2;
+    private static final int COST_MENU_ID = 3;
+
     private View view;
 
     public Controller(View view) {
@@ -31,7 +34,7 @@ public class Controller {
      */
     public void processUser(){
         int i =0;
-        while (i!=4){
+        while (i!=4){ // menu item for exit
             view.printMessage(View.MENU);
             i = inputIntValueWithScanner(view.getScanner());
             List<Sweetness> products = createSweetnesses();
@@ -65,10 +68,10 @@ public class Controller {
         Director director = new Director();
         PackageBuilder pb;
         switch (menu_id){
-            case 2:
+            case MANUFACTURER_MENU_ID:
                 pb = new ManufacturerPackBuilder(new Parallelepiped(12,5,4),products, Sweetness.Manufacturer.ROSHEN);
                 break;
-            case 3:
+            case COST_MENU_ID:
                 pb = new CostPackBuilder(new Cylinder(5,5),products,200);
                 break;
             default:
@@ -87,6 +90,5 @@ public class Controller {
         }
         return sc.nextInt();
     }
-
 
 }

@@ -19,7 +19,7 @@ public class Package { //Product analog, builder pattern
     private Shape shape;//shape
     private String label; // name of present
     private List<Sweetness> sweets = new ArrayList<>(); // list of sweets
-    private double totalPrice = 0.0;
+    private double totalPrice = 0.0; // total prie of this pack
 
     /**
      * setters and getters block
